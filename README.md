@@ -2,9 +2,9 @@
 Predict Bank Credit Risk using South German Credit Data
 
 # Project Requirements 
-[Requirement Document](https://drive.google.com/file/d/1DgBcDSYCxdmoKFhxtlCN-5VGSZhLGOTC/view)
-[Project Description](https://archive.ics.uci.edu/ml/datasets/South+German+Credit#)
-[Project Data](https://archive.ics.uci.edu/ml/machine-learning-databases/00522/SouthGermanCredit.zip)
+1. [Requirement Document](https://drive.google.com/file/d/1DgBcDSYCxdmoKFhxtlCN-5VGSZhLGOTC/view)
+2. [Project Description](https://archive.ics.uci.edu/ml/datasets/South+German+Credit#)
+3. [Project Data](https://archive.ics.uci.edu/ml/machine-learning-databases/00522/SouthGermanCredit.zip)
 
 
 Creating conda environment
