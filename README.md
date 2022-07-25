@@ -69,7 +69,7 @@ git remote -v
 
 ### To setup CI/CD pipeline in heroku we need 3 information
 1. HEROKU_EMAIL = niladri.schaudhury@gmail.com
-2. HEROKU_API_KEY = <71d51ac1-8972-436d-b0e9-f9bc3393f872>
+2. HEROKU_API_KEY = <>
 3. HEROKU_APP_NAME = bank-credit-risk-predictor
 
 ### Docker steps
