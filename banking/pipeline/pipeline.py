@@ -1,14 +1,27 @@
-from tkinter import E
-from sklearn.pipeline import Pipeline
+from collections import namedtuple
+from datetime import datetime
+import uuid
 from banking.config.configuration import Configuartion
-from banking.logger import logging
+from banking.logger import logging, get_log_file_name
 from banking.exception import BankingException
+from threading import Thread
+from typing import List
 
-from banking.entity.artifact_entity import DataIngestionArtifact
-from banking.entity.config_entity import DataIngestionConfig
+from multiprocessing import Process
+from banking.entity.artifact_entity import ModelPusherArtifact, DataIngestionArtifact, ModelEvaluationArtifact
+from banking.entity.artifact_entity import DataValidationArtifact, DataTransformationArtifact, ModelTrainerArtifact
+from banking.entity.config_entity import DataIngestionConfig, ModelEvaluationConfig
 from banking.component.data_ingestion import DataIngestion
-
+from banking.component.data_validation import DataValidation
+#from banking.component.data_transformation import DataTransformation
+#from banking.component.model_trainer import ModelTrainer
+#from banking.component.model_evaluation import ModelEvaluation
+#from banking.component.model_pusher import ModelPusher
 import os, sys
+from collections import namedtuple
+from datetime import datetime
+import pandas as pd
+#from banking.constant import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
 
 class Pipeline:
 
@@ -24,6 +37,7 @@ class Pipeline:
         try:
             # data ingestion
             data_ingestion_artifact = self.start_data_ingestion()
+            data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
 
         except Exception as e:
             raise BankingException(e, sys) from e
@@ -38,8 +52,15 @@ class Pipeline:
             raise BankingException(e, sys) from e    
 
 
-    def start_data_validation(self):
-        pass
+    def start_data_validation(self, data_ingestion_artifact: DataIngestionArtifact) \
+            -> DataValidationArtifact:
+        try:
+            data_validation = DataValidation(data_validation_config=self.config.get_data_validation_config(),
+                                             data_ingestion_artifact=data_ingestion_artifact
+                                             )
+            return data_validation.initiate_data_validation()
+        except Exception as e:
+            raise BankingException(e, sys) from e
 
     def start_data_transformation(self):
         pass
