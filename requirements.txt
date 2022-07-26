@@ -4,4 +4,9 @@ requests
 sklearn
 Flask
 gunicorn
+PyYAML
+evidently
+dill
+matplotlib
+wget
 -e .

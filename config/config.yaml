@@ -1,0 +1,11 @@
+training_pipeline_config:
+  pipeline_name: banking
+  artifact_dir: artifact
+
+data_ingestion_config:
+  dataset_download_url: https://archive.ics.uci.edu/ml/machine-learning-databases/00522/SouthGermanCredit.zip
+  extract_download_dir: extract_data
+  main_data_dir: main_data
+  ingested_dir: ingested_data
+  ingested_train_dir: train
+  ingested_test_dir: test 
