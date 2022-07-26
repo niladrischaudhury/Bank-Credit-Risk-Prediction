@@ -6,7 +6,7 @@ saved_models/*
 # C extensions
 *.so
 # Data Folders
-housing/artifact
+banking/artifact
 notebook/data
 notebook/test
 notebook/train
