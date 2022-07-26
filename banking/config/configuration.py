@@ -29,7 +29,7 @@ class Configuartion:
                                         training_pipeline_config[TRAINING_PIPELINE_ARTIFACT_DIR_KEY]
                                         )
 
-            training_pipeline_config = TrainingPipelineConfig(artifact_dir=artifact_dir)
+            training_pipeline_config = TrainingPipelineConfig(artifact_dir = artifact_dir)
             logging.info(f"Training pipleine config: {training_pipeline_config}")
             return training_pipeline_config
 
