@@ -66,7 +66,7 @@ class DataIngestion:
         try:
             print('Inside split_data_as_train_test')
             main_data_dir = self.data_ingestion_config.main_data_dir
-            file_name = os.listdir(main_data_dir)[2]
+            file_name = os.listdir(main_data_dir)[2]            
             banking_file_path = os.path.join(main_data_dir,file_name)
 
 
@@ -85,6 +85,7 @@ class DataIngestion:
             logging.info(f"Splitting data into train and test")
             strat_train_set = None
             strat_test_set = None
+            file_name = file_name.replace('.asc', '.csv')
 
             split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
 
@@ -102,6 +103,7 @@ class DataIngestion:
                 os.makedirs(self.data_ingestion_config.ingested_train_dir,exist_ok=True)
                 logging.info(f"Exporting training datset to file: [{train_file_path}]")
                 strat_train_set.to_csv(train_file_path,index=False)
+                
 
             if strat_test_set is not None:
                 os.makedirs(self.data_ingestion_config.ingested_test_dir, exist_ok= True)
