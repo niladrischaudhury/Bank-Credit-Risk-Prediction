@@ -1,0 +1,199 @@
+{% extends 'header.html' %}
+
+{% block head %}
+
+
+<title>Housing Estimator</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+
+
+        <form action="/predict" method="post">
+            <legend>Banking Credit Risk Prediction Form</legend>
+            <div class="mb-3">
+                <label class="form-label">Status</label>
+                <input class="form-control" type="text" name="status" placeholder="Enter a value of Status"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Duration</label>
+                <input class="form-control" type="text" name="duration" placeholder="Enter a value of duration"
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Credit History</label>
+                <input class="form-control" type="text" name="credit_history"
+                    placeholder="Enter a value of credit_history" />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Purpose</label>
+                <input class="form-control" type="text" name="purpose" placeholder="Enter a value of purpose"
+                    required />
+
+            </div>
+            <div class="mb-3">
+                <label class="form-label">amount</label>
+                <input class="form-control" type="text" name="amount"
+                    placeholder="Enter a value of amount" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">savings</label>
+                <input class="form-control" type="text" name="savings" placeholder="Enter a value of savings"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">employment_duration</label>
+                <input class="form-control" type="text" name="employment_duration" placeholder="Enter a value of employment_duration"
+                    required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">installment_rate</label>
+                <input class="form-control" type="text" name="installment_rate"
+                    placeholder="Enter a value of installment_rate" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">personal_status_sex</label>
+                <input class="form-control" type="text" name="personal_status_sex"
+                    placeholder="Enter a value of personal_status_sex" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">other_debtors</label>
+                <input class="form-control" type="text" name="other_debtors"
+                    placeholder="Enter a value of other_debtors" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">present_residence</label>
+                <input class="form-control" type="text" name="present_residence"
+                    placeholder="Enter a value of present_residence" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">property</label>
+                <input class="form-control" type="text" name="property"
+                    placeholder="Enter a value of property" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">age</label>
+                <input class="form-control" type="text" name="age"
+                    placeholder="Enter a value of age" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">other_installment_plans</label>
+                <input class="form-control" type="text" name="other_installment_plans"
+                    placeholder="Enter a value of other_installment_plans" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">housing</label>
+                <input class="form-control" type="text" name="housing"
+                    placeholder="Enter a value of housing" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">number_credits</label>
+                <input class="form-control" type="text" name="number_credits"
+                    placeholder="Enter a value of number_credits" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">job</label>
+                <input class="form-control" type="text" name="job"
+                    placeholder="Enter a value of job" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">people_liable</label>
+                <input class="form-control" type="text" name="people_liable"
+                    placeholder="Enter a value of people_liable" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">telephone</label>
+                <input class="form-control" type="text" name="telephone"
+                    placeholder="Enter a value of telephone" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">foreign_worker</label>
+                <input class="form-control" type="text" name="foreign_worker"
+                    placeholder="Enter a value of foreign_worker" required />
+            </div>
+
+            <!--
+            <div class="mb-3">
+                <label class="form-label">Ocean Proximity</label>
+                <select class="form-control" name="ocean_proximity" placeholder="Enter a value of ocean_proximity"
+                    required>
+
+                    <option value="<1H OCEAN">
+                        &lt;1H OCEAN
+                    </option>
+                    <option value="INLAND">
+                        INLAND
+                    </option>
+                    <option value="NEAR BAY">
+                        NEAR BAY
+                    </option>
+                    <option value="NEAR OCEAN">
+                        NEAR OCEAN
+                    </option>
+                    <option value="ISLAND">
+                        ISLAND
+                    </option>
+
+                </select>
+            </div>
+            -->
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict Median House Value" required />
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-md-6 col-sm-12 col-xs-6 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+              German Baking Credit Risk
+            </div>
+            <div class="card-body">
+        {% if context['banking_data'] is not none %}
+        <table class="table table-striped">
+            <caption>Banking Credit Risk Prediction</caption>
+            <tr>
+                <th>Input Feature</th>
+                <th>Feature Value</th>
+
+            </tr>
+            {% for column,value in context['banking_data'].items() %}
+
+
+
+            <tr>
+                <td>{{column}}</td>
+                <td>{{value[0]}}</td>
+            </tr>
+
+            {% endfor %}
+            <tr>
+
+                <td>credit_risk </td>
+                <td>
+                    {{ context['credit_risk'] }}
+                </td>
+            </tr>
+        </table>
+
+        {% else %}
+       
+              <h5 class="card-title">Submit Form</h5>
+              <p class="card-text">Kindly provide necessary information to estimate Credit Risk Rating</p>
+            
+         
+
+        {% endif %}
+        Go to <a href="/" class="btn btn-primary">Home</a>
+    </div>
+</div>
+    </div>
+
+    {% endblock %}

@@ -10,51 +10,84 @@ import pandas as pd
 class BankingData:
 
     def __init__(self,
-                 longitude: float,
-                 latitude: float,
-                 housing_median_age: float,
-                 total_rooms: float,
-                 total_bedrooms: float,
-                 population: float,
-                 households: float,
-                 median_income: float,
-                 ocean_proximity: str,
-                 median_house_value: float = None
+                 status: int,
+                 duration: int,
+                 credit_history: int,
+                 purpose: int,
+                 amount: int,
+                 savings: int,
+                 employment_duration: int,
+                 installment_rate: int,
+                 personal_status_sex: int,
+                 other_debtors: int,
+                 present_residence: int,
+                 property: int,
+                 age: int,
+                 other_installment_plans: int,
+                 housing: int,
+                 number_credits: int,
+                 job: int,
+                 people_liable: int,
+                 telephone: int,
+                 foreign_worker: int,
+                 credit_risk: int = None
                  ):
         try:
-            self.longitude = longitude
-            self.latitude = latitude
-            self.housing_median_age = housing_median_age
-            self.total_rooms = total_rooms
-            self.total_bedrooms = total_bedrooms
-            self.population = population
-            self.households = households
-            self.median_income = median_income
-            self.ocean_proximity = ocean_proximity
-            self.median_house_value = median_house_value
+            self.status = status
+            self.duration = duration
+            self.credit_history = credit_history
+            self.purpose = purpose
+            self.amount = amount
+            self.savings = savings
+            self.employment_duration = employment_duration
+            self.installment_rate = installment_rate
+            self.personal_status_sex = personal_status_sex
+            self.other_debtors = other_debtors
+            self.present_residence = present_residence
+            self.property = property
+            self.age = age
+            self.other_installment_plans = other_installment_plans
+            self.housing = housing
+            self.number_credits = number_credits
+            self.job = job
+            self.people_liable = people_liable
+            self.telephone = telephone
+            self.foreign_worker = foreign_worker
+            self.credit_risk = credit_risk
         except Exception as e:
             raise BankingException(e, sys) from e
 
-    def get_housing_input_data_frame(self):
+    def get_banking_input_data_frame(self):
 
         try:
-            housing_input_dict = self.get_housing_data_as_dict()
-            return pd.DataFrame(housing_input_dict)
+            banking_input_dict = self.get_banking_data_as_dict()
+            return pd.DataFrame(banking_input_dict)
         except Exception as e:
             raise BankingException(e, sys) from e
 
-    def get_housing_data_as_dict(self):
+    def get_banking_data_as_dict(self):
         try:
             input_data = {
-                "longitude": [self.longitude],
-                "latitude": [self.latitude],
-                "housing_median_age": [self.housing_median_age],
-                "total_rooms": [self.total_rooms],
-                "total_bedrooms": [self.total_bedrooms],
-                "population": [self.population],
-                "households": [self.households],
-                "median_income": [self.median_income],
-                "ocean_proximity": [self.ocean_proximity]}
+                "status": [self.status],
+                "duration": [self.duration],
+                "credit_history": [self.credit_history],
+                "purpose": [self.purpose],
+                "amount": [self.amount],
+                "savings": [self.savings],
+                "employment_duration": [self.employment_duration],
+                "installment_rate": [self.installment_rate],
+                "personal_status_sex": [self.personal_status_sex],
+                "other_debtors": [self.other_debtors],
+                "present_residence": [self.present_residence],
+                "property": [self.property],
+                "age": [self.age],
+                "other_installment_plans": [self.other_installment_plans],
+                "housing": [self.housing],
+                "number_credits": [self.number_credits],
+                "job": [self.job],
+                "people_liable": [self.people_liable],
+                "telephone": [self.telephone],
+                "foreign_worker": [self.foreign_worker]}
             return input_data
         except Exception as e:
             raise BankingException(e, sys)
@@ -82,7 +115,7 @@ class BankingPredictor:
         try:
             model_path = self.get_latest_model_path()
             model = load_object(file_path=model_path)
-            median_house_value = model.predict(X)
-            return median_house_value
+            credit_risk = model.predict(X)
+            return credit_risk
         except Exception as e:
             raise BankingException(e, sys) from e
