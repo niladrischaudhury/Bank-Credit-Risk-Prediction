@@ -8,5 +8,6 @@ PyYAML
 evidently
 dill
 matplotlib
+seaborn
 wget
 -e .

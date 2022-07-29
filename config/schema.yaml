@@ -1,48 +1,51 @@
 columns:
-  status: int
+  status: category
   duration: int
-  credit_history: int
-  purpose: int
+  credit_history: category
+  purpose: category
   amount: int
-  savings: int
+  savings: category
   employment_duration: int
   installment_rate: int
-  personal_status_sex: int
-  other_debtors: int
+  personal_status_sex: category
+  other_debtors: category
   present_residence: int
   property: int
   age: int
-  other_installment_plans: int
-  housing: int
+  other_installment_plans: category
+  housing: category
   number_credits: int
   job: int
   people_liable: int
-  telephone: int
-  foreign_worker: int
+  telephone: category
+  foreign_worker: category
   credit_risk: int
 
 numerical_columns:
-  - status
   - duration
-  - credit_history
-  - purpose
   - amount
-  - savings
+  - age
+
+ordinal_columns:
   - employment_duration
   - installment_rate
+  - present_residence
+  - property  
+  - number_credits
+  - job  
+
+categorical_columns:
+  - status  
+  - credit_history
+  - purpose  
+  - savings
   - personal_status_sex
   - other_debtors
-  - present_residence
-  - property
-  - age
   - other_installment_plans
   - housing
-  - number_credits
-  - job
   - people_liable
   - telephone
-  - foreign_worker
-  - credit_risk
+  - foreign_worker  
 
 target_column: credit_risk
 

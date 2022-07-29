@@ -90,8 +90,10 @@ class DataIngestion:
             split = StratifiedShuffleSplit(n_splits=1, test_size=0.2, random_state=42)
 
             for train_index,test_index in split.split(banking_data_frame, banking_data_frame["credit_risk"]):
-                strat_train_set = banking_data_frame.loc[train_index].drop(["credit_risk"],axis=1)
-                strat_test_set = banking_data_frame.loc[test_index].drop(["credit_risk"],axis=1)
+                #strat_train_set = banking_data_frame.loc[train_index].drop(["credit_risk"],axis=1)
+                #strat_test_set = banking_data_frame.loc[test_index].drop(["credit_risk"],axis=1)
+                strat_train_set = banking_data_frame.loc[train_index]
+                strat_test_set = banking_data_frame.loc[test_index]
 
             train_file_path = os.path.join(self.data_ingestion_config.ingested_train_dir,
                                             file_name)
